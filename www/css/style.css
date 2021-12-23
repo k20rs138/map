@@ -15,15 +15,31 @@
     }
     #btnA {
         font-size: 20px;
-        position:absolute; top:320px; left:10%; width:35%; height:60px; 
+        position:absolute; top:400px; left:10%; width:35%; height:60px; 
     }
     #btnB {
         font-size: 20px;
-        position:absolute; top:320px; left:45%; width:25%; height:60px; 
+        position:absolute; top:400px; left:45%; width:25%; height:60px; 
     }
     #data {
         font-size: 4em;
-        position:absolute; top:380px; left:20px; width:85%; height:60px; 
+        position:absolute; top:460px; left:20px; width:85%; height:60px; 
         
+    }
+    label[for="lat"] {
+        font-size: 15px;
+        position:absolute; top:333px; left:5%; height:20px; 
+    }
+    label[for="lon"] {
+        font-size: 15px;
+        position:absolute; top:363px; left:5%; height:20px; 
+    }
+    #lat {
+        font-size: 20px;
+        position:absolute; top:330px; left:15%; width:70%; height:20px; 
+    }
+    #lon {
+        font-size: 20px;
+        position:absolute; top:360px; left:15%; width:70%; height:20px;
     }
     
