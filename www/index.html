@@ -12,6 +12,24 @@
   <script src="leaflet/leaflet.js"></script>
   <script src="keys.js"></script>
   <script>
+    var ncmb = new NCMB(appKey, clientKey);
+    var MapDataClass = ncmb.DataStore("MapData");
+
+    function enterData(){
+      var mapDataClass = new MapDataClass();
+      var latData = parseInt($("#lat").val());
+      var lonData = parseInt($("#lon").val());
+      mapDataClass
+      .set("latitude", latData)
+      .set("longitude", lonData).save()
+      .then(function() {
+        $("#data").html("enter success");
+      })
+      .catch(function() {
+        $("#data").html("enter fail");
+      })
+    }
+
     function dist(sx, sy, ex, ey) {
       return Math.sqrt((ex - sx) * (ex - sx) + (ey - sy) * (ey - sy));
     }
@@ -95,7 +113,7 @@
     <label for="lon">経度</label>
     <input id="lon" type="number" placeholder="longitude">
   </div>
-  <button id="btnA">ButtonA</button>
+  <button id="btnA" onclick="enterData()">ButtonA</button>
   <button id="btnB">ButtonB</button>
 
 </body>
