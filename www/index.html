@@ -12,6 +12,13 @@
   <script src="leaflet/leaflet.js"></script>
   <script src="keys.js"></script>
   <script>
+    // 変数宣言
+    var map;
+    var marker;
+    var marker2;
+    var lat;
+    var lon;
+
     var ncmb = new NCMB(appKey, clientKey);
     var MapDataClass = ncmb.DataStore("MapData");
 
@@ -56,19 +63,8 @@
 
     }
 
-    // 変数宣言
-    var map;
-    var marker;
-    var marker2;
-
-    var lat;
-    var lon;
-
-
-
     function btnAClick(e) {
       navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
     }
 
     function btnBClick(e) {
@@ -78,7 +74,6 @@
       marker.setLatLng([lat, lon]);
       map.panTo([lat, lon]);
       $("#data").html("博多駅");
-
     }
 
     function onSuccess(pos) {
@@ -98,7 +93,6 @@
       $("#data").html("error:" + e.name + ":" + e.message);
     }
   </script>
-
 
 </head>
 
