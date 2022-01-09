@@ -65,6 +65,19 @@
     }
 
     function onMapClick(e) { 
+      var mapDataClass = new MapDataClass();
+      var lat = e.latlng.lat;
+      var lon = e.latlng.lng;
+      mapDataClass
+      .set("latitude", lat)
+      .set("longitude", lon).save()
+      .then(function() {
+        $("#data").html("緯度: " + lat + "<br>経度: " + lon);
+      })
+      .catch(function() {
+        $("#data").html("enter fail");
+      })
+      
       var mk = L.marker(e.latlng).on('click', onMarkerClick).addTo(map); 
     }
     
