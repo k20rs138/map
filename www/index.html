@@ -61,6 +61,15 @@
       marker = L.marker([0, 0]).addTo(map);
       marker2 = L.marker([0, 0]).addTo(map);
 
+      map.on('click', onMapClick); 
+    }
+
+    function onMapClick(e) { 
+      var mk = L.marker(e.latlng).on('click', onMarkerClick).addTo(map); 
+    }
+    
+    function onMarkerClick(e) { 
+      map.removeLayer(e.target); 
     }
 
     function btnAClick(e) {
