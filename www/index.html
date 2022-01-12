@@ -89,15 +89,6 @@
       navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
 
-    function btnBClick(e) {
-      lat = 33.5897279;
-      lon = 130.4206648;
-
-      marker.setLatLng([lat, lon]);
-      map.panTo([lat, lon]);
-      $("#data").html("博多駅");
-    }
-
     function onSuccess(pos) {
       lat = pos.coords.latitude;
       lon = pos.coords.longitude;
@@ -117,20 +108,36 @@
   </script>
 
 </head>
-
 <body onload="init();">
-  <div id="map"> </div>
-  <div id="data">Data</div>
-  <div>
-    <label for="lat">緯度</label>
-    <input id="lat" type="number" placeholder="latitude">
+<div data-role="page" id="main">
+  <div data-role="header">
+    <h1>メインページ</h1>
   </div>
-  <div>
-    <label for="lon">経度</label>
-    <input id="lon" type="number" placeholder="longitude">
+  <div data-role="content">
+    <div id="map"> </div>
+    <div id="data">Data</div>
+    <div>
+      <label for="lat">緯度</label>
+      <input id="lat" type="number" placeholder="latitude">
+    </div>
+    <div>
+      <label for="lon">経度</label>
+      <input id="lon" type="number" placeholder="longitude">
+    </div>
+    <button id="btnA" onclick="enterData()">ButtonA</button>
+    <a href="#coordinates" data-role="button">座標</a>
   </div>
-  <button id="btnA" onclick="enterData()">ButtonA</button>
-  <button id="btnB">ButtonB</button>
+</div>
+
+<div data-role="page" id="coordinates">
+  <div data-role="header">
+    <h1>座標</h1>
+    <a href="#main" data-icon="back" class="ui-btn-left">戻る</a>
+  </div>
+  <div data-role="content">
+    
+  </div>
+</div>
 
 </body>
 
