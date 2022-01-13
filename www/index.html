@@ -42,14 +42,6 @@
     }
 
     function init() {
-      $('#btnA').on("click", function(e) {
-        btnAClick(e);
-      });
-
-      $('#btnB').on("click", function(e) {
-        btnBClick(e);
-      });
-
       map = L.map('map').setView([33.67038, 130.44619], 15);
 
       var tiles = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -131,6 +123,25 @@
         longitude.innerHTML = array[i].longitude;
       }   
     }
+
+    function deleteData() {
+      MapDataClass.fetch()
+      .then(function(results) {
+        return results.delete()
+      })
+      .then(function(results) {
+        $("#data").html("delete success");
+      })
+      .catch(function() {
+        $("#data").html("delete fail");
+      })
+      for(i=0; i<5; i++) {
+        coordinatesTable.rows[i].cells[0].innerHTML = "-";
+        coordinatesTable.rows[i].cells[1].innerHTML = "no data";
+        coordinatesTable.rows[i].cells[2].innerHTML = "no data";
+      }
+      checkCoordinates();
+    }
   </script>
 
 </head>
@@ -195,6 +206,7 @@
     </center>
   </div>
   <div data-role="footer" data-position="fixed">
+    <input type="button" value="削除" name="deleteBtn" onclick="deleteData()"/>
   </div>
 </div>
 
