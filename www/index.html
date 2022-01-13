@@ -22,19 +22,10 @@
     var ncmb = new NCMB(appKey, clientKey);
     var MapDataClass = ncmb.DataStore("MapData");
 
-    function enterData(){
-      var mapDataClass = new MapDataClass();
-      var latData = parseInt($("#lat").val());
-      var lonData = parseInt($("#lon").val());
-      mapDataClass
-      .set("latitude", latData)
-      .set("longitude", lonData).save()
-      .then(function() {
-        $("#data").html("enter success");
-      })
-      .catch(function() {
-        $("#data").html("enter fail");
-      })
+    function moveMap(){
+      var latData = parseFloat($("#lat").val());
+      var lonData = parseFloat($("#lon").val());
+      map.panTo([latData, lonData]);
     }
 
     function dist(sx, sy, ex, ey) {
@@ -155,15 +146,15 @@
     <div id="data">Data</div>
     <div>
       <label for="lat">緯度</label>
-      <input id="lat" type="number" placeholder="latitude">
+      <input id="lat" type="number" step="0.00000000000001" placeholder="latitude">
     </div>
     <div>
       <label for="lon">経度</label>
-      <input id="lon" type="number" placeholder="longitude">
+      <input id="lon" type="number" step="0.00000000000001" placeholder="longitude">
     </div>
   </div>
   <div data-role="footer" data-position="fixed">
-    <input type="button" value="buttonA" name="btnA" onclick="enterData()"/>
+    <input type="button" value="移動" name="btnA" onclick="moveMap()"/>
     <input type="button" value="座標" name="btnB" onclick="toCoordinates()"/>
   </div>
 </div>
