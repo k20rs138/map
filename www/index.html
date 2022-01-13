@@ -68,11 +68,14 @@
       var mapDataClass = new MapDataClass();
       var lat = e.latlng.lat;
       var lon = e.latlng.lng;
+      // 入力アラートを表示
+	    var name = window.prompt("名前を入力してください", "");
       mapDataClass
+      .set("name", name)
       .set("latitude", lat)
       .set("longitude", lon).save()
       .then(function() {
-        $("#data").html("緯度: " + lat + "<br>経度: " + lon);
+        $("#data").html(name + "<br>緯度: " + lat + "<br>経度: " + lon);
       })
       .catch(function() {
         $("#data").html("enter fail");
@@ -83,27 +86,6 @@
     
     function onMarkerClick(e) { 
       map.removeLayer(e.target); 
-    }
-
-    function btnAClick(e) {
-      navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    }
-
-    function onSuccess(pos) {
-      lat = pos.coords.latitude;
-      lon = pos.coords.longitude;
-      marker.setLatLng([lat, lon]);
-      map.panTo([lat, lon]);
-      $("#data").html(lat + "<br>" + lon);
-      if (lat > 33.66850 && lat < 33.67250) {
-        if (lon > 130.4430 && lon < 130.4490) {
-          $("#data").html(lat + "<br>" + lon + "<br>" + "Goal!!!");
-        }
-      }
-    }
-
-    function onError(e) {
-      $("#data").html("error:" + e.name + ":" + e.message);
     }
 
     //
@@ -138,6 +120,9 @@
     function setData(array) {
       var table = document.getElementById("coordinatesTable");
       for (i=0; i<array.length; i++) {
+        //名前の設定
+        var name = table.rows[i].cells[0];
+        name.innerHTML = array[i].name;
         // 緯度の設定
         var latitude = table.rows[i].cells[1];
         latitude.innerHTML = array[i].latitude;
@@ -180,27 +165,27 @@
       <h1>座標</h1><br />
       <table id="coordinatesTable" border="1" width="90%" cellspacing="1" cellpadding="5">
         <tr>
-          <td id="place_1" align="right" nowrap>-</td>
+          <td id="name_1" align="center" nowrap>-</td>
           <td id= "lat_1" align="center" width="200">no data</td>
           <td id= "lon_1"align="center" width="150">no data</td>
         </tr>
         <tr>
-          <td id="place_2" align="right" nowrap>-</td>
+          <td id="name_2" align="center" nowrap>-</td>
           <td id = "lat_2" align="center" width="200">no data</td>
           <td id = "lon_2" align="center" width="150">no data</td>
         </tr>
         <tr>
-          <td id="place_3" align="right" nowrap>-</td>
+          <td id="name_3" align="center" nowrap>-</td>
           <td id = "lat_3" align="center" width="200">no data</td>
           <td id = "lon_3" align="center" width="150">no data</td>
         </tr>
         <tr>
-          <td id="place_4" align="right" nowrap>-</td>
+          <td id="name_4" align="center" nowrap>-</td>
           <td id = "lat_4" align="center" width="200">no data</td>
           <td id = "lon_4" align="center" width="150">no data</td>
         </tr>
         <tr>
-          <td id="place_5" align="right" nowrap>-</td>
+          <td id="name_5" align="center" nowrap>-</td>
           <td id = "lat_5" align="center" width="200">no data</td>
           <td id = "lon_5" align="center" width="150">no data</td>
         </tr>
