@@ -105,6 +105,47 @@
     function onError(e) {
       $("#data").html("error:" + e.name + ":" + e.message);
     }
+
+    //
+    function toCoordinates() {
+      // データ取得
+      checkCoordinates();
+      // 座標画面へ遷移
+      window.location.href = "#coordinates";
+    }
+
+    // 【mBaaS】保存したデータの検索と取得
+    function checkCoordinates() {
+      // 保存先クラスを作成
+      var mapDataClass = ncmb.DataStore("MapData");
+      // データ5件を取得するように設定する
+      mapDataClass
+      .limit(5)
+      .fetchAll()
+      .then(function(results){
+        // 検索に成功した場合の処理
+        console.log("検索に成功しました。");
+        // テーブルにデータをセット
+        setData(results);
+      })
+      .catch(function(error){
+      // 検索に失敗した場合の処理
+        console.log("検索に失敗しました。エラー:" +error);
+      }); 
+    }
+
+    // テーブルにデータを設定
+    function setData(array) {
+      var table = document.getElementById("coordinatesTable");
+      for (i=0; i<array.length; i++) {
+        // 緯度の設定
+        var latitude = table.rows[i].cells[1];
+        latitude.innerHTML = array[i].latitude;
+        // 経度の設定
+        var longitude = table.rows[i].cells[2];
+        longitude.innerHTML = array[i].longitude;
+      }   
+    }
   </script>
 
 </head>
@@ -124,18 +165,47 @@
       <label for="lon">経度</label>
       <input id="lon" type="number" placeholder="longitude">
     </div>
-    <button id="btnA" onclick="enterData()">ButtonA</button>
-    <a href="#coordinates" data-role="button">座標</a>
+    <input type="button" value="buttonA" name="btnA" onclick="enterData()"/>
+    <input type="button" value="座標" name="btnB" onclick="toCoordinates()"/>
   </div>
 </div>
 
 <div data-role="page" id="coordinates">
   <div data-role="header">
-    <h1>座標</h1>
+    <h1></h1>
     <a href="#main" data-icon="back" class="ui-btn-left">戻る</a>
   </div>
   <div data-role="content">
-    
+    <center>
+      <h1>座標</h1><br />
+      <table id="coordinatesTable" border="1" width="90%" cellspacing="1" cellpadding="5">
+        <tr>
+          <td id="place_1" align="right" nowrap>-</td>
+          <td id= "lat_1" align="center" width="200">no data</td>
+          <td id= "lon_1"align="center" width="150">no data</td>
+        </tr>
+        <tr>
+          <td id="place_2" align="right" nowrap>-</td>
+          <td id = "lat_2" align="center" width="200">no data</td>
+          <td id = "lon_2" align="center" width="150">no data</td>
+        </tr>
+        <tr>
+          <td id="place_3" align="right" nowrap>-</td>
+          <td id = "lat_3" align="center" width="200">no data</td>
+          <td id = "lon_3" align="center" width="150">no data</td>
+        </tr>
+        <tr>
+          <td id="place_4" align="right" nowrap>-</td>
+          <td id = "lat_4" align="center" width="200">no data</td>
+          <td id = "lon_4" align="center" width="150">no data</td>
+        </tr>
+        <tr>
+          <td id="place_5" align="right" nowrap>-</td>
+          <td id = "lat_5" align="center" width="200">no data</td>
+          <td id = "lon_5" align="center" width="150">no data</td>
+        </tr>
+      </table> 
+    </center>
   </div>
 </div>
 
