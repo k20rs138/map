@@ -104,13 +104,13 @@
       var table = document.getElementById("coordinatesTable");
       for (i=0; i<array.length; i++) {
         //名前の設定
-        var name = table.rows[i].cells[0];
+        var name = table.rows[i+1].cells[0];
         name.innerHTML = array[i].name;
         // 緯度の設定
-        var latitude = table.rows[i].cells[1];
+        var latitude = table.rows[i+1].cells[1];
         latitude.innerHTML = array[i].latitude;
         // 経度の設定
-        var longitude = table.rows[i].cells[2];
+        var longitude = table.rows[i+1].cells[2];
         longitude.innerHTML = array[i].longitude;
       }   
     }
@@ -126,7 +126,7 @@
       .catch(function() {
         $("#data").html("delete fail");
       })
-      for(i=0; i<5; i++) {
+      for(i=1; i<6; i++) {
         coordinatesTable.rows[i].cells[0].innerHTML = "-";
         coordinatesTable.rows[i].cells[1].innerHTML = "no data";
         coordinatesTable.rows[i].cells[2].innerHTML = "no data";
@@ -169,28 +169,33 @@
       <h1>座標</h1><br />
       <table id="coordinatesTable" border="1" width="90%" cellspacing="1" cellpadding="5">
         <tr>
+          <td id="name_0" align="center" nowrap>名前</td>
+          <td id= "lat_0" align="center" width="150">緯度</td>
+          <td id= "lon_0"align="center" width="150">経度</td>
+        </tr>
+        <tr>
           <td id="name_1" align="center" nowrap>-</td>
-          <td id= "lat_1" align="center" width="200">no data</td>
+          <td id= "lat_1" align="center" width="150">no data</td>
           <td id= "lon_1"align="center" width="150">no data</td>
         </tr>
         <tr>
           <td id="name_2" align="center" nowrap>-</td>
-          <td id = "lat_2" align="center" width="200">no data</td>
+          <td id = "lat_2" align="center" width="150">no data</td>
           <td id = "lon_2" align="center" width="150">no data</td>
         </tr>
         <tr>
           <td id="name_3" align="center" nowrap>-</td>
-          <td id = "lat_3" align="center" width="200">no data</td>
+          <td id = "lat_3" align="center" width="150">no data</td>
           <td id = "lon_3" align="center" width="150">no data</td>
         </tr>
         <tr>
           <td id="name_4" align="center" nowrap>-</td>
-          <td id = "lat_4" align="center" width="200">no data</td>
+          <td id = "lat_4" align="center" width="150">no data</td>
           <td id = "lon_4" align="center" width="150">no data</td>
         </tr>
         <tr>
           <td id="name_5" align="center" nowrap>-</td>
-          <td id = "lat_5" align="center" width="200">no data</td>
+          <td id = "lat_5" align="center" width="150">no data</td>
           <td id = "lon_5" align="center" width="150">no data</td>
         </tr>
       </table> 
